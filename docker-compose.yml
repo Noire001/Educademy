@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+
+    webspa:
+        image: ${REGISTRY:-edu}/webapi:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/WebSPA/Dockerfile
+    webstatus:
+        image: ${REGISTRY:-edu}/webstatus:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/WebStatus/Dockerfile
+    #seq:
+        #image: datalust/seq:latest
+        
+    elk_init:
+        image: bash
+        privileged: true
+        user: root
+        command: ["sysctl","-w","vm.max_map_count=262144"]
+    elk:
+        image: sebp/elk
+        depends_on: 
+            - elk_init
+        ports:
+            - "5601:5601"
+            - "9200:9200"
+            - "5045:5045"
+        volumes:
+            - './elk/logstash-input.conf:/etc/logstash/conf.d/03-input.conf'

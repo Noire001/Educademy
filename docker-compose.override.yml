@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+
+    webstatus:
+        environment:
+            - HealthChecksUI__HealthChecks__0__Name=WebSPA HTTP Check
+            - HealthChecksUI__HealthChecks__0__Uri=http://webspa/hc
+        ports:
+            - "5107:80"
+    webspa:
+        ports:
+            - "5104:80"
+    #seq:
+    #   environment:
+    #      - ACCEPT_EULA=Y
+        ports:
+            - "5340:80"
