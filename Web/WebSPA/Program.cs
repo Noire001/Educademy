@@ -13,10 +13,10 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.WithProperty("ApplicationContext", typeof(Program).Namespace)
     .Enrich.FromLogContext()
     .WriteTo.Console()
-    .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://logstash:5044" : logstashUrl, queueLimitBytes: null)
+    .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://elk:5045" : logstashUrl, queueLimitBytes: null)
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
-
+builder.Host.UseSerilog();
 
 var services = builder.Services;
 services.AddHealthChecks();

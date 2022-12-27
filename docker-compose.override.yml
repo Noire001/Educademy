@@ -11,8 +11,3 @@ services:
     webspa:
         ports:
             - "5104:80"
-    #seq:
-    #   environment:
-    #      - ACCEPT_EULA=Y
-        ports:
-            - "5340:80"

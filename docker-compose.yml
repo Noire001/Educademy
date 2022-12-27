@@ -12,9 +12,7 @@ services:
         build:
             context: .
             dockerfile: Web/WebStatus/Dockerfile
-    #seq:
-        #image: datalust/seq:latest
-        
+
     elk_init:
         image: bash
         privileged: true

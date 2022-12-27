@@ -9,13 +9,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
       <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
       <PackageReference Include="Serilog.Sinks.Http" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="wwwroot\_app\version.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot" />
     </ItemGroup>
 
 </Project>
